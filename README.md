@@ -7,7 +7,7 @@
 - [ER Model](#er-model)
 - [Functionalities](#functionalities)
 	- [Create Note](#create-note)
-	- [Note Status/Archive](#note-status/archive)
+	- [Note Status/Archive](#note-statusarchive)
 	- [Filter Notes](#filter-notes)
 	- [Delete Notes](#delete-notes)
 
