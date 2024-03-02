@@ -1,4 +1,4 @@
-# 📝 Notes SPA with Categories
+# 📝 Notes SPA
 
 ---
 ## Index
