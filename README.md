@@ -12,7 +12,8 @@
 	- [Delete Notes](#delete-notes)
 
 ---
-#### Clone the repository: `git clone https://github.com/lucianomp9/Notes-App`
+#### Clone the repository:
+```git clone https://github.com/lucianomp9/Notes-App```
 
 ## Backend Technologies
 #### Java, Spring Boot, Hibernate, Design patterns (MVC, DTO's, Dependency Inyection), Exception handling.
@@ -68,5 +69,15 @@ The Entity-Relationship model corresponding to the database.
 ## Delete Notes
 ![delete-notes](https://github.com/lucianomp9/Notes-App/assets/86586819/ae385922-18e2-458b-ac95-79aa804b24a4)
 
-TODO
-- Multiple categories for a note
+
+
+
+> [!NOTE]
+> If a category wants to be deleted, while is being asinged for a Note, an alert will show off, saying 'Error deleting category. There are notes with this category. Please delete them before removing the category'
+
+
+
+---
+> TODO:
+> Allow multiple categories for a note
+
