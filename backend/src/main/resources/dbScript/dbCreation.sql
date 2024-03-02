@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `ensolverschaldb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `ensolverschaldb`;
+CREATE DATABASE  IF NOT EXISTS `notesappdb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `notesappdb`;
 -- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
--- Host: localhost    Database: ensolverschaldb
+-- Host: localhost    Database: notesappdb
 -- ------------------------------------------------------
 -- Server version	8.0.33
 
@@ -52,11 +52,11 @@ CREATE TABLE `note` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping events for database 'ensolverschaldb'
+-- Dumping events for database 'notesappdb'
 --
 
 --
--- Dumping routines for database 'ensolverschaldb'
+-- Dumping routines for database 'notesappdb'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
