@@ -1,0 +1,28 @@
+.container {
+  margin-top: 50px;
+}
+
+.container h3 {
+  margin-bottom: 2px;
+  font-weight: 400;
+}
+
+.filter-area select {
+  background-color: rgb(156, 156, 156);
+  width: auto;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.filter-area select:hover {
+  background-color: rgb(116, 116, 116);
+  cursor: pointer;
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+  -webkit-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+  -ms-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+  -o-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+}
