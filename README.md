@@ -73,8 +73,7 @@ The Entity-Relationship model corresponding to the database.
 
 
 > [!NOTE]
-> If a category wants to be deleted, while is being asinged for a Note, an alert will show off, saying 'Error deleting category. There are notes with this category. Please delete them before removing the category'
-
+> If a category is requested for deletion while being assigned to a note, an alert will appear stating, ‘Error deleting category. There are notes associated with this category. Please delete them before removing the category.’
 
 
 ---
