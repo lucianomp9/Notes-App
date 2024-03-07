@@ -7,7 +7,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: rgb(221, 221, 221);
+  background-color: rgb(211, 210, 210);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -30,19 +30,39 @@
   -o-transition: transform 0.3s ease-in-out;
 }
 
-.note-title {
-  font-size: 30px;
-  font-weight: 500;
-}
-
 .noteDivider {
   border: 0;
   height: 1px;
   background: #333;
 }
 
+.note-title {
+  font-size: 20px;
+  --max-lines: 1;
+  --line-height: 1;
+  font-weight: 600;
+  max-height: calc(var(--max-lines) * 1em * var(--line-height));
+  line-height: var(--line-height);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: var(--max-lines);
+  -webkit-box-orient: vertical;
+  margin-bottom: 20px;
+}
+
 .note-description {
+  line-break: anywhere;
+  -webkit-text-decorations-in-effect: underline;
+  line-height: normal;
+  --max-lines: 3;
+  --line-height: 1.4;
   font-weight: 400;
+  max-height: calc(var(--max-lines) * 1em * var(--line-height));
+}
+
+.note-info {
+  max-width: 290px;
+  overflow-wrap: break-word;
 }
 
 .notes-list {
@@ -55,23 +75,30 @@
 
 .noteContent {
   width: 100%;
-  height: 100px;
-  border: none;
-  resize: none;
-  outline: none;
+  height: 320px;
   background-color: transparent;
-  transition: box-shadow 0.3s ease-in-out, color 0.3s ease-in-out; /* Added color transition */
+  transition: box-shadow 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.note-footer {
+  margin-top: 100px;
 }
 
 .note-footer-info {
   display: flex;
   font-weight: 500;
-  margin-top: 70px;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 80px;
+  right: 70px;
+  left: 70px;
 }
 
 .note-footer-cat {
-  margin-top: 10%;
+  position: absolute;
+  bottom: 130px;
+  left: 50px;
+  right: 50px;
 }
 
 .note-footer-cat button {
@@ -88,15 +115,16 @@
   transform: translateX(-50%);
   display: flex;
   margin-bottom: 10px;
-  justify-content: space-evenly;
+  background-color: #afafaf3d;
+  border-radius: 26px;
 }
 
 .note-btns button {
-  margin-left: 10px;
+  margin: 0 5px
 }
 
 .note-btns button:hover {
-  background-color: #ffffff;
+  background-color: #aaaaaa62;
 }
 
 #editModal {

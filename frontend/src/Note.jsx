@@ -10,7 +10,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import EditIcon from "@mui/icons-material/Edit";
 
-export default function Note({ note, deleteNotes }) {
+export default function Note({ note, deleteNotes, updateNote }) {
   const apiURL = "http://localhost:8080/api/v1/note/";
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState(note.title);
@@ -18,10 +18,9 @@ export default function Note({ note, deleteNotes }) {
   const [status, setStatus] = useState(note.status);
   const [archived, setArchived] = useState(note.archived);
 
-  // DELETE
+  // DELETE NOTE
   const onDelete = async (uuid) => {
     await axios.delete(apiURL + uuid).then(function (response) {
-      //Updates local notes
       deleteNotes(response.data);
     });
   };
@@ -32,14 +31,18 @@ export default function Note({ note, deleteNotes }) {
     }
   };
 
-  // Update
+  // Handle Update Note
   const handleUpdate = () => {
     setOpen(true);
   };
 
   const onUpdate = async (uuid, updatedNote) => {
-    await axios.put(`${apiURL}${uuid}`, updatedNote);
-    location.reload();
+    try {
+      const response = await axios.put(`${apiURL}${uuid}`, updatedNote);
+      updateNote(response.data)
+    } catch(error) {
+      console.error(error);
+    }
   };
 
   const handleClose = () => {
@@ -57,32 +60,40 @@ export default function Note({ note, deleteNotes }) {
     handleClose();
   };
 
-  // Status
+  // UPDATE STATUS
 
   const onStatus = async (uuid, status) => {
-    await axios.patch(`${apiURL}${uuid}`, { status });
+    try {
+      const response = await axios.patch(`${apiURL}${uuid}`, { status });
+      const fetchedNote = response.data;
+      updateNote(fetchedNote);
+    } catch (error) {
+      console.error("Error receiving note:", error);
+    }
   };
 
   const handleStatus = async () => {
-    if (window.confirm("Mark this note as completed?")) {
       const updatedStatus = !status;
       await onStatus(note.uuid, updatedStatus);
       setStatus(updatedStatus);
-    }
   };
 
-  // Archive
+  // UPDATE ARCHIVE
 
   const onArchive = async (uuid, archived) => {
-    await axios.patch(`${apiURL}${uuid}`, { archived });
+    try {
+      const response = await axios.patch(`${apiURL}${uuid}`, { archived });
+      const fetchedNote = response.data;
+      updateNote(fetchedNote);
+    } catch (error) {
+      console.error("Error receiving note:", error);
+    }
   };
 
   const handleArchive = async () => {
-    if (window.confirm("Archive this note?")) {
       const updatedArchived = !note.archived;
       await onArchive(note.uuid, updatedArchived);
       setArchived(updatedArchived);
-    }
   };
 
   return (

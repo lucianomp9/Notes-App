@@ -16,7 +16,7 @@ import CreatableSelect from "react-select/creatable";
 
 const apiUrl = "http://localhost:8080/api/v1/";
 
-export default function MyComponent({ updateNotes }) {
+export default function MyComponent({ updateNotes, updateCategories}) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState({});
@@ -117,6 +117,8 @@ export default function MyComponent({ updateNotes }) {
       .delete(`${apiUrl}category/${category.value}`)
       .then(function (response) {
         handleClose();
+        // TODO: ACTUALIZAR ESTADO LOCAL DE CATEGORIAS AL ELIMINAR.
+        updateCategories(response.data)
         console.log(response);
       })
       .catch(function (error) {
@@ -136,7 +138,7 @@ export default function MyComponent({ updateNotes }) {
         <AppBar position="fixed" sx={{ top: 0 }}>
           <Toolbar>
             <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-              Note App
+             📝Notes SPA
             </Typography>
             <Button
               onClick={handleCreate}

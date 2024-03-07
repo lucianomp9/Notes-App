@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./App.css";
 import { useState, useEffect } from "react";
-import axios from "axios"; // Import axios
+import axios from "axios";
 import CreateNote from "./Components/CreateNote/CreateNote";
 import NotesList from "./Components/NoteList/NotesList";
 import FilterNote from "./Components/FilterNote/FilterNote";
@@ -53,6 +53,24 @@ function App() {
     setNotes((prevNotes) => [newNote, ...prevNotes]);
   };
 
+
+  const updateNote = (updatedNote) => {
+    setNotes((prevNotes) => {
+      return prevNotes.map((note) => {
+        if (note.uuid === updatedNote.uuid) {
+          return {
+            ...note,
+            archived: updatedNote.archived !== undefined ? updatedNote.archived : note.archived,
+            status: updatedNote.status !== undefined ? updatedNote.status : note.status,
+            title: updatedNote.title !== undefined ? updatedNote.title : note.title,
+            description: updatedNote.description !== undefined ? updatedNote.description : note.description
+          };
+        }
+        return note;
+      });
+    });
+  };
+  
   const deleteNotes = (noteToDelete) => {
     setNotes((prevNotes) => {
       const updatedNotes = prevNotes.filter(
@@ -66,7 +84,7 @@ function App() {
     <>
       <CreateNote updateNotes={updateNotes} />
       <FilterNote filterValueSelected={onFilterValueSelected} />
-      <NotesList notes={filteredNoteList} deleteNotes={deleteNotes} />
+      <NotesList notes={filteredNoteList} deleteNotes={deleteNotes}  updateNote={updateNote}/>
     </>
   );
 }
