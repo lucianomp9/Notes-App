@@ -16,11 +16,15 @@ import CreatableSelect from "react-select/creatable";
 
 const apiUrl = "http://localhost:8080/api/v1/";
 
-export default function MyComponent({ updateNotes, updateCategories}) {
+export default function MyComponent({
+  updateNotes,
+  updateCategories,
+  categories,
+  deleteCategoryFromList
+}) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState({});
-  const [categoryList, setCategoryList] = useState([]);
   const [openCreateModal, setOpenCreateModal] = useState(false);
   const [openDeleteCategoryModal, setOpenDeleteCategoryModal] = useState(false);
   const [errorAlert, setErrorAlert] = useState({
@@ -33,36 +37,19 @@ export default function MyComponent({ updateNotes, updateCategories}) {
     axios
       .post(`${apiUrl}category`, category)
       .then(function (response) {
-        console.log(response);
         const newCategory = {
           value: response.data.id,
           label: response.data.name,
         };
-        // Update categoryList with  new category
-        setCategoryList([...categoryList, newCategory]);
-        // set new category as selected category
+        // Set created category as selected one
         setCategory(newCategory);
+        // Updates categories list
+        updateCategories(newCategory);
       })
       .catch(function (error) {
         console.log(error);
       });
   };
-
-  //Fetch categories from the API
-  useEffect(() => {
-    axios
-      .get(apiUrl + "category")
-      .then(function (response) {
-        const newData = response.data.map((category) => ({
-          value: category.id,
-          label: category.name,
-        }));
-        setCategoryList(newData);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, []);
 
   //Handle selected category
   const handleChange = (selectedOption) => {
@@ -93,7 +80,6 @@ export default function MyComponent({ updateNotes, updateCategories}) {
         },
       })
       .then(function (response) {
-        console.log(response);
         updateNotes(response.data);
       })
       .catch(function (error) {
@@ -117,9 +103,8 @@ export default function MyComponent({ updateNotes, updateCategories}) {
       .delete(`${apiUrl}category/${category.value}`)
       .then(function (response) {
         handleClose();
-        // TODO: ACTUALIZAR ESTADO LOCAL DE CATEGORIAS AL ELIMINAR.
-        updateCategories(response.data)
-        console.log(response);
+        deleteCategoryFromList(response.data.value)
+        setCategory()
       })
       .catch(function (error) {
         setErrorAlert({
@@ -138,7 +123,7 @@ export default function MyComponent({ updateNotes, updateCategories}) {
         <AppBar position="fixed" sx={{ top: 0 }}>
           <Toolbar>
             <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-             📝Notes SPA
+              📝Notes SPA
             </Typography>
             <Button
               onClick={handleCreate}
@@ -185,7 +170,7 @@ export default function MyComponent({ updateNotes, updateCategories}) {
           <FormControl sx={{ mt: 3, width: "auto" }}>
             <CreatableSelect
               isClearable
-              options={categoryList}
+              options={categories}
               value={category}
               onChange={handleChange}
               onCreateOption={(inputValue) => {
@@ -193,7 +178,6 @@ export default function MyComponent({ updateNotes, updateCategories}) {
                   name: inputValue,
                 };
                 createCategory(newCategory);
-                setCategoryList([...categoryList, newCategory]);
               }}
             />
           </FormControl>
@@ -213,7 +197,7 @@ export default function MyComponent({ updateNotes, updateCategories}) {
           <FormControl sx={{ mt: 3, width: "auto" }}>
             <CreatableSelect
               isClearable
-              options={categoryList}
+              options={categories}
               value={category}
               onChange={handleChange}
             />

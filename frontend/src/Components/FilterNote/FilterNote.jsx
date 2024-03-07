@@ -3,7 +3,6 @@ import "./FilterNote.css";
 
 export default function FilterNote(props) {
   const onFilterValueChanged = (e) => {
-    console.log(e.target.value);
     props.filterValueSelected(e.target.value);
   };
 
