@@ -13,7 +13,7 @@
 
 ---
 #### Clone the repository:
-```git clone https://github.com/lucianomp9/Notes-App```
+```git clone https://github.com/lucianomp9/Notes-SPA```
 
 ## Backend Technologies
 #### Java, Spring Boot, Hibernate, Design patterns (MVC, DTO's, Dependency Inyection), Exception handling.
